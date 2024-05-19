@@ -1,4 +1,6 @@
-# Anime-Recommendation-System
+# Diet-Recommendation-System
+## Dataset
+Extract food.com dataset first.
 
 ## Instructions from Diet Recommendation System
 ### Run it locally
