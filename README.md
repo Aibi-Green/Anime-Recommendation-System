@@ -1,21 +1,33 @@
 # Diet-Recommendation-System
+A simple diet recommender system that uses Docker to manage the application's backend and frontend.
 
-Docker
-FastAPI
-Python
+## Requirements:
+- Download and install both [Docker Desktop and Docker Compose](https://docs.docker.com/compose/install/).
 
-## Instructions from Diet Recommendation System
-### Run it locally
-#### Clone the repo
+## Tools and Technologies
+- Docker
+- Python
+- FastAPI 
+- Uvicorn
+
+## How to run both backend and frontend
+Clone repository
 ```
-$ git clone https://github.com/zakaria-narjis/Diet-Recommendation-System
+git clone https://github.com/Aibi-Green/Diet-Recommendation-System.git
 ```
-### docker-compose
-In the project root run:
 
+Run docker-compose in terminal of your project root:
 ```
 docker-compose up -d --build
 ```
-Then open http://localhost:8501 and enjoy 😃.
+After building the docker containers, open Web App with this link: [http://localhost:8501](http://localhost:8501)
 
-PS: You should have docker and docker-compose already installed
+## Backend Testing
+Download and Install an API platform such as [Insomnia](https://insomnia.rest/download) or [Postman](https://www.postman.com/downloads/).
+
+Then, create an HTTP request (GET or POST).
+
+![example_backend_testing](Assets/example_backend_testing.png)
+
+## Resources
+Dataset - [Kaggle](https://www.kaggle.com/datasets/irkaal/foodcom-recipes-and-reviews?select=recipes.csv)
