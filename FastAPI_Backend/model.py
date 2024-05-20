@@ -29,9 +29,9 @@ def recommend(dataframe,_input,parameters={'n_neighbors':5,'return_distance':Fal
         
         # Apply pipeline to _input
         _input=np.array(_input).reshape(1,-1)
-        recommendations = prep_data.iloc[pipeline.transform(_input)[0]]
+        recommendations = dataframe.iloc[pipeline.transform(_input)[0]]
         
-        if(recommendations.shape[0]==parameters['n_neighbors']):
+        if(recommendations.shape[0] == parameters['n_neighbors']):
             return recommendations
         else:
             return None

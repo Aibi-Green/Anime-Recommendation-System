@@ -8,7 +8,7 @@ from model import recommend, format_recommended_recipes
 app = FastAPI()
 
 # Use the compressed dataset
-dataset=pd.read_csv('../Data/dataset.csv',compression='gzip')
+dataset=pd.read_csv('../Data/compressed_file/dataset.gz',compression='gzip')
 
 '''
 Defines the structure for parameters
@@ -21,7 +21,7 @@ class parameters(BaseModel):
 Defines the structure for Input for the Model
 '''
 class ModelInput(BaseModel):
-    _input:conlist(float, min_items=9, max_items=9) # type: ignore
+    nutrition_input:conlist(float, min_items=9, max_items=9) # type: ignore
     params:Optional[parameters]
 
 '''
@@ -56,12 +56,11 @@ class ModelOutput(BaseModel):
 def home():
     return {"Diet Recommendation System Backend": "OK"}
 
-
 @app.post("/predict/", response_model=ModelOutput)
 def prediction(model_input:ModelInput):
     recommendations = recommend(
         dataset,
-        model_input._input,
+        model_input.nutrition_input,
         model_input.params.dict())
     
     formatted_recommendations = format_recommended_recipes(recommendations)
@@ -70,4 +69,3 @@ def prediction(model_input:ModelInput):
         return {"output":None}
     else:
         return {"output":formatted_recommendations}
-
