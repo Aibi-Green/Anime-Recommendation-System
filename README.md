@@ -1,6 +1,8 @@
 # Diet-Recommendation-System
-## Dataset
-Extract food.com dataset first.
+
+Docker
+FastAPI
+Python
 
 ## Instructions from Diet Recommendation System
 ### Run it locally
@@ -12,7 +14,7 @@ $ git clone https://github.com/zakaria-narjis/Diet-Recommendation-System
 In the project root run:
 
 ```
-$ docker-compose up -d --build
+docker-compose up -d --build
 ```
 Then open http://localhost:8501 and enjoy 😃.
 
