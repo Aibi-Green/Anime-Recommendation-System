@@ -17,6 +17,7 @@ const Input = () => {
     output: [],
     img_url: []
   })
+  const [isToggle, setIsToggle] = useState(false)
   const [bmr, setBMR] = useState(0)
   const [calorie, setCalorie] = useState(0)
   const [actWeights] = useState([1.375, 1.55, 1.725, 1.9])
@@ -38,6 +39,23 @@ const Input = () => {
   useEffect(() => {
     setCalorie(bmr * actWeights[formData.activityLevel])
   }, [formData, bmr, actWeights])
+
+  useEffect(() => {
+    showResults()
+  })
+
+  function showResults() {
+    const section = <Results response={{
+      output: res.output, 
+      img_urls: res.img_url, 
+      bmr:bmr, 
+      calorie:calorie
+    }} />
+
+    if(isToggle) {
+      return section
+    }
+  }
 
   function getRandomNumber(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -68,7 +86,7 @@ const Input = () => {
           getRandomNumber(25, 200)
         ],
         params: {
-          n_neighbors: 5,
+          n_neighbors: 6,
           return_distance: "False"
         }
       }
@@ -107,6 +125,7 @@ const Input = () => {
 
       // Send request
       sendRequest()
+      setIsToggle(true)
     } else {
       alert("Please fill all required fields")
     }
@@ -115,18 +134,8 @@ const Input = () => {
   return (<>
     <div className='input'>
       <div className='input-text'>
-        <h1>Input</h1>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-        <p>
-          weight: {formData.weight} <br />
-          height: {formData.height} <br />
-          gender: {formData.gender || "-"} <br />
-          age: {formData.age} <br />
-          activityLevel: {formData.activityLevel} <br />
-          currentCondition: {formData.currentCondition} <br />
-          BMR: {bmr} <br />
-          calorie: {calorie} <br />
-        </p>
+        <h1>Input your information</h1>
+        <p>Know how much calories you need to maintain your weight.</p>
 
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className='formLeft'>
@@ -204,8 +213,8 @@ const Input = () => {
         </form>
       </div>
     </div>
-    {/* <Results recommendations={recs} calorie={Math.ceil(calorie)} bmr={Math.ceil(bmr)} /> */}
-    <Results response={{output: res.output, img_urls: res.img_url}} />
+    
+    {showResults()}
 
   </>);
 }

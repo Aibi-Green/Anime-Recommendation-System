@@ -14,16 +14,16 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Frontend/Dockerfile
+      dockerfile: React_Frontend/Dockerfile
     image: frontend:latest
     ports:
-      - 8501:8501
+      - 5173:5173
     networks:
       - project_network
     depends_on:
       - backend
     volumes:
-      - ./Frontend:/app/backend
+      - ./React_Frontend:/app/backend
 
 networks:
   project_network:

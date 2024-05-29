@@ -23,16 +23,16 @@ interface Props {
   response: {
     output: Recommendations[]
     img_urls: string[]
+    bmr: number
+    calorie: number
   }
 }
 
 const Card = (props: Props) => {
-  const [isToggled, setIsToggled] = useState(false)
+  const [isToggled, setIsToggled] = useState(true)
 
   const handleToggle = () => {
     setIsToggled(!isToggled)
-    console.log("toggle", isToggled);
-    console.log(props.response);
   }
 
   const listItems = props.response.output.map((m, i) => {
@@ -41,10 +41,13 @@ const Card = (props: Props) => {
         <div className="card-img">
           <img src={props.response.img_urls[i]}></img>
         </div>
-        <div className="meal-name">{m.Name}</div>
-        <div className={!isToggled ? "hidden cal-sub" : "cal-sub"}>
-          {m.Calories}
+        <div className="card-desc">
+          <div className="meal-name">{m.Name}</div>
+          <div className={!isToggled ? "hidden cal-sub" : "cal-sub"}>
+            {m.Calories}
+          </div>
         </div>
+
         <table className={isToggled ? "hidden" : ""}>
           <thead>
             <tr>
@@ -107,7 +110,7 @@ const Card = (props: Props) => {
             </tr>
             <tr>
               <td>Ingredients:</td>
-              <td>{m.RecipeIngredientParts.join(", ")}</td>
+              <td>{m.RecipeIngredientParts.join("; ")}</td>
             </tr>
             <tr>
               <td>Instructions:</td>
@@ -122,8 +125,15 @@ const Card = (props: Props) => {
   return (
     <div className="results">
       <div className="results-header">
-        <h1>Recommended Meals</h1>
+        <h1>Results</h1>
+        <p>
+          Your BMR is <span className="bold">{Math.ceil(props.response.bmr)}</span> and based on your activiy 
+          level you need <span className="bold">{Math.ceil(props.response.calorie)}</span> calories.
+        </p>
+
+        <h2>Recommended Meals</h2>
         <button
+          className="recommend"
           type="button"
           onClick={handleToggle}
         >
