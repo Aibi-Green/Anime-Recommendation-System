@@ -1,11 +1,24 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, conlist
 from typing import List, Optional
 import pandas as pd
-from model import recommend, format_recommended_recipes
+from model import recommend, format_recommended_recipes, get_img_url
 
 # initialize api
 app = FastAPI()
+
+# for cors
+origins = [
+   "http://localhost:5173"
+]
+app.add_middleware(
+   CORSMiddleware,
+   allow_origins=origins,
+   allow_credentials=True,
+   allow_methods=["*"],
+   allow_headers=["*"],
+)
 
 # Use the compressed dataset
 dataset=pd.read_csv('../Data/compressed_file/dataset.gz',compression='gzip')
@@ -50,6 +63,7 @@ which is a list of recipes (list within a list)
 '''
 class ModelOutput(BaseModel):
     output: Optional[List[Recipe]] = None
+    img_url: Optional[List[str]]
 
 
 @app.get("/")
@@ -64,8 +78,15 @@ def prediction(model_input:ModelInput):
         model_input.params.dict())
     
     formatted_recommendations = format_recommended_recipes(recommendations)
+    meal_names = []
+    for meal in formatted_recommendations:
+        meal_names.append(meal["Name"])
+    
+    img_url = []
+    for name in meal_names:
+        img_url.append(get_img_url(name))
     
     if formatted_recommendations is None:
-        return {"output":None}
+        return {"output":None, "img_url":None}
     else:
-        return {"output":formatted_recommendations}
+        return {"output":formatted_recommendations, "img_url":img_url}

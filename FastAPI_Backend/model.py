@@ -2,7 +2,10 @@
 KNN model: content-based filtering
 '''
 import numpy as np
-import re
+import re, requests
+from bs4 import BeautifulSoup
+from urllib.parse import quote
+
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import NearestNeighbors
 from sklearn.pipeline import Pipeline
@@ -48,3 +51,29 @@ def format_recommended_recipes(dataframe):
         return recommendations
     else:
         return None
+    
+def get_img_url(searchTerm):
+    NotFound = "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+    try:
+        # formats {] in string to the searchTerm}
+        searchUrl = "https://www.google.com/search?q={}&site=webhp&tbm=isch".format(quote(searchTerm))
+        
+        # sends a get request using the search url and 
+        # retrieves the content of the response as a Unicode string
+        d = requests.get(searchUrl).text
+        
+        # create a beautiful soup object from the HTML content 'd'
+        # using the specified parser
+        soup = BeautifulSoup(d, 'html.parser') # im assuming d is the whole site
+        
+        # retrieve all img elements
+        img_tags = soup.find_all('img')
+        img_urls = []
+        for img in img_tags:
+            src = img.get('src')  # Use .get() to safely access attributes
+            if src and src.startswith("https"):  # Check if src is not None before accessing
+                img_urls.append(src)
+        
+        return(img_urls[0])
+    except:
+        return NotFound
