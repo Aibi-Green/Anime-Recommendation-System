@@ -1,0 +1,12 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Century Gothic';
+
+  /* font-family: Urbanist; */
+}
+
+.container{
+  min-height: 100vh;
+}
