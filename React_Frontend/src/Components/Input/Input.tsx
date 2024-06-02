@@ -9,7 +9,7 @@ const Input = () => {
     height: 0,
     age: 0,
     gender: "",
-    currentCondition: 0,
+    currentCondition: "Healthy",
     activityLevel: 0,
     foodAllergies: "",
   });
@@ -46,13 +46,13 @@ const Input = () => {
 
   function showResults() {
     const section = <Results response={{
-      output: res.output, 
-      img_urls: res.img_url, 
-      bmr:bmr, 
-      calorie:calorie
+      output: res.output,
+      img_urls: res.img_url,
+      bmr: bmr,
+      calorie: calorie
     }} />
 
-    if(isToggle) {
+    if (isToggle) {
       return section
     }
   }
@@ -138,67 +138,78 @@ const Input = () => {
         <p>Know how much calories you need to maintain your weight.</p>
 
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div className='formLeft'>
-            <label htmlFor="weight">Weight:</label>
-            <input type="number" step="any" id="weight" name="weight" min="0" placeholder="kg"
-              value={formData.weight}
-              onChange={(e) => handleChange(e)}
-            /><br />
-
-            <label htmlFor="height">Height:</label>
-            <input type="number" step="any" id="height" name="height" min="0" placeholder="cm"
-              value={formData.height}
-              onChange={(e) => handleChange(e)}
-            /><br />
-
-            <label htmlFor="gender">Gender:</label>
-            <fieldset
-            >
-              <input type="radio" id="male" name="gender" value="male"
-                checked={formData.gender === "male"}
+          <div>
+            <div className='formLeft'>
+              <label htmlFor="weight">Weight:</label>
+              <input type="number" step="any" id="weight" name="weight" min="0" placeholder="kg"
+                value={formData.weight}
                 onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="male">Male</label>
-              <input type="radio" id="female" name="gender" value="female"
-                checked={formData.gender === "female"}
+              /><br />
+
+              <label htmlFor="height">Height:</label>
+              <input type="number" step="any" id="height" name="height" min="0" placeholder="cm"
+                value={formData.height}
                 onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="female">Female</label>
-            </fieldset><br />
-          </div>
+              /><br />
 
-          <div className='formRight'>
-            <label htmlFor="age">Age:</label>
-            <input type="number" id="age" name="age" min="0"
-              value={formData.age}
-              onChange={(e) => handleChange(e)}
-            /><br />
+              <label htmlFor="gender">Gender:</label>
+              <fieldset
+              >
+                <div>
+                  <input type="radio" id="male" name="gender" value="male"
+                    checked={formData.gender === "male"}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <label htmlFor="male">Male</label>
+                </div>
+                <div>
+                  <input type="radio" id="female" name="gender" value="female"
+                    checked={formData.gender === "female"}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <label htmlFor="female">Female</label>
+                </div>
+              </fieldset><br />
+            </div>
 
-            <label htmlFor="activityLevel">Activity Level:</label>
-            <select id="activityLevel" name="activityLevel"
-              value={formData.activityLevel}
-              onChange={(e) => handleChange(e)}
-            >
-              <option value="0">Select an option</option>
-              <option value="1">Little or No exercise</option>
-              <option value="2">Light Exercise/sports 1-3 days/week</option>
-              <option value="3">Moderate exercise/sports 3-5 days/week</option>
-              <option value="4">Hard exercise/sports 6-7 days a week</option>
-              <option value="5">Very hard exercise/sports & physical job or 2x training</option>
-            </select><br />
+            <div className='formRight'>
+              <label htmlFor="age">Age:</label>
+              <input type="number" id="age" name="age" min="0"
+                value={formData.age}
+                onChange={(e) => handleChange(e)}
+              /><br />
 
-            <label htmlFor="currentCondition">Current Condition:</label>
-            <select id="currentCondition" name="currentCondition"
-              value={formData.currentCondition}
-              onChange={(e) => handleChange(e)}
-            >
-              <option value="0">Select an option</option>
-              <option value="1">asdas</option>
-              <option value="2">asdasd</option>
-              <option value="3">asdasd</option>
-            </select><br />
+              <label htmlFor="activityLevel">Activity Level:</label>
+              <select id="activityLevel" name="activityLevel"
+                value={formData.activityLevel}
+                onChange={(e) => handleChange(e)}
+              >
+                <option value="0">Select an option</option>
+                <option value="1">Little or No exercise</option>
+                <option value="2">Light Exercise/sports 1-3 days/week</option>
+                <option value="3">Moderate exercise/sports 3-5 days/week</option>
+                <option value="4">Hard exercise/sports 6-7 days a week</option>
+                <option value="5">Very hard exercise/sports & physical job or 2x training</option>
+              </select><br />
 
-            {/* <label htmlFor="allergies">Allergies:</label>
+              <label htmlFor="currentCondition">Current Condition:</label>
+              <input type="currentCondition" id="currentCondition" name="currentCondition"
+                value={formData.currentCondition}
+                onChange={(e) => handleChange(e)}
+              /><br />
+
+              {/* <label htmlFor="currentCondition">Current Condition:</label>
+              <select id="currentCondition" name="currentCondition"
+                value={formData.currentCondition}
+                onChange={(e) => handleChange(e)}
+              >
+                <option value="0">Select an option</option>
+                <option value="1">asdas</option>
+                <option value="2">asdasd</option>
+                <option value="3">asdasd</option>
+              </select><br /> */}
+
+              {/* <label htmlFor="allergies">Allergies:</label>
             <select id="allergies" name="foodAllergies"
               // value={formData.foodAllergies}
               // onChange={(e) => handleChange(e)}
@@ -208,12 +219,13 @@ const Input = () => {
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select><br /> */}
+            </div>
           </div>
           <button type="submit">Generate submit</button>
         </form>
       </div>
     </div>
-    
+
     {showResults()}
 
   </>);

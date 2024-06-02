@@ -3,6 +3,7 @@
     color: #262626;
     height: 100%;
     padding: 120px 0 200px 0;
+    min-height: 100vh;
 }
 
 .results-header {
@@ -30,6 +31,7 @@ button {
 .recommend {
     background-color: #74bd6a;
     color: white;
+    margin-left: 0px;
 }
 
 .grid-container {
