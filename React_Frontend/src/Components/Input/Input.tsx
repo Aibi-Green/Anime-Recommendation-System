@@ -221,7 +221,7 @@ const Input = () => {
             </select><br /> */}
             </div>
           </div>
-          <button type="submit">Generate submit</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>
