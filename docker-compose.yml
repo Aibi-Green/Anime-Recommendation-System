@@ -20,10 +20,13 @@ services:
       - 5173:5173
     networks:
       - project_network
-    depends_on:
-      - backend
-    volumes:
-      - ./React_Frontend:/app/backend
+
+    # starts the container in interactive mode
+    # what should be done with React apps in docker
+    # opposite of detach mode
+    # React container won't automatically shut down
+    # stdin_open: true
+    # tty: true
 
 networks:
   project_network:

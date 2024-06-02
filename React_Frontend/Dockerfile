@@ -4,13 +4,23 @@ FROM node:18-alpine
 
 RUN mkdir -p app/frontend
 
-COPY React_Frontend/requirements.txt app/frontend/
-COPY React_Frontend app/frontend
+COPY React_Frontend/package.json app/frontend/package.json
+COPY React_Frontend/package-lock.json app/frontend/package-lock.json
 
 WORKDIR /app/frontend
-
 RUN npm install
 
-EXPOSE 8501
+COPY React_Frontend .
+
+EXPOSE 5173
 
 CMD ["npm", "run", "dev"]
+
+# COPY React_Frontend app/frontend
+
+# WORKDIR /app/frontend
+# RUN npm install
+
+# EXPOSE 5173
+
+# CMD ["npm", "run", "dev"]
