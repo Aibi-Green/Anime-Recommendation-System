@@ -192,22 +192,24 @@ const Input = () => {
                 <option value="5">Very hard exercise/sports & physical job or 2x training</option>
               </select><br />
 
-              <label htmlFor="currentCondition">Current Condition:</label>
+              {/* <label htmlFor="currentCondition">Current Condition:</label>
               <input type="currentCondition" id="currentCondition" name="currentCondition"
                 value={formData.currentCondition}
                 onChange={(e) => handleChange(e)}
-              /><br />
+              /><br /> */}
 
-              {/* <label htmlFor="currentCondition">Current Condition:</label>
+              <label htmlFor="currentCondition">Current Condition:</label>
               <select id="currentCondition" name="currentCondition"
                 value={formData.currentCondition}
                 onChange={(e) => handleChange(e)}
               >
                 <option value="0">Select an option</option>
-                <option value="1">asdas</option>
-                <option value="2">asdasd</option>
-                <option value="3">asdasd</option>
-              </select><br /> */}
+                <option value="1">Healthy</option>
+                <option value="2">Cold</option>
+                <option value="3">Fever</option>
+                <option value="4">Pregnant</option>
+                <option value="5">Chronic Illness</option>
+              </select><br />
 
               {/* <label htmlFor="allergies">Allergies:</label>
             <select id="allergies" name="foodAllergies"

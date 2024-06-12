@@ -23,7 +23,7 @@ def recommend(dataframe,_input,parameters={'n_neighbors':5,'return_distance':Fal
         prep_data=scaler.fit_transform(dataframe.iloc[:,6:15].to_numpy())
         
         # Initialize model
-        model = NearestNeighbors(metric='cosine', algorithm='brute')
+        model = NearestNeighbors(metric='minkowski', p=2, algorithm='auto')
         model.fit(prep_data)
         
         # Building pipeline
