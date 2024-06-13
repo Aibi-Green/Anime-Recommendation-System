@@ -128,7 +128,7 @@ const Card = (props: Props) => {
         <h1>Results</h1>
         <p>
           Your BMR is <span className="bold">{Math.ceil(props.response.bmr)}</span> and based on your activiy 
-          level you need <span className="bold">{Math.ceil(props.response.calorie)}</span> calories.
+          level, your caloric needs are <span className="bold">{Math.ceil(props.response.calorie)}</span>.
         </p>
 
         <h2>Recommended Meals</h2>
