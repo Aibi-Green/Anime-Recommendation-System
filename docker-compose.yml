@@ -14,7 +14,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: React_Frontend/Dockerfile
+      dockerfile: diet-frontend/Dockerfile
     image: frontend:latest
     ports:
       - 5173:5173
