@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input {
+    @apply text-center py-32 text-secondary-200
+}
+
+.input p {
+    @apply text-secondary-100
+}
+
+.input h1,
+.results h1 {
+    @apply text-4xl font-bold
+}
+
+.input input,
+.input select {
+    @apply border rounded-md p-3 mb-5
+}
+
+.input form {
+    @apply w-2/5 flex flex-col gap-5 mx-auto mt-14
+}
+
+.input form > div {
+    @apply flex flex-col gap-2
+}
+
+.input button[type="submit"] {
+    @apply bg-secondary-200 text-primary w-36 py-3 rounded-full font-bold hover:bg-accent m-auto
+}
+
+.results {
+    @apply bg-secondary-200 text-primary p-28 text-center
+}
+
+.results-header > h2 {
+    @apply text-2xl font-semibold mt-10 mb-3
+}
+
+/* .results > div > .recommend {
+    @apply rounded-full bg-secondary-100 px-5 py-2 text-secondary-300 hover:text-primary hover:bg-accent mb-10
+} */
+
+.results > .grid-container {
+    @apply grid grid-cols-3 justify-center gap-10 mx-32
+}
+
+.results .card {
+    @apply w-full h-auto bg-primary text-secondary-200 rounded-2xl overflow-hidden
+}
+
+.results .card-img img {
+    @apply h-full w-full
+}
+
+.results .card-img {
+    @apply h-72
+}
+
+.results button {
+    @apply bg-secondary-100 px-5 py-3 rounded-full mb-10
+}
+
+.results .meal-name {
+    @apply text-xl font-bold mb-5
+}
+
+.results .card-desc {
+    @apply p-5
+}
+
+.results table th,
+.results table td {
+    @apply p-1 border
+}
+
+/* .results .bg-popup {
+    @apply fixed top-0 left-0 flex justify-center items-center w-screen h-screen bg-[#000] bg-opacity-40 z-20 animate-fade-in
+}
+
+.results .dialog {
+    @apply w-[70vw] h-[40vh] p-12 bg-primary text-secondary-200 rounded-xl drop-shadow-lg
+}
+
+.results .close-btn {
+    @apply fixed right-3 top-3 text-2xl bg-secondary-100 text-primary rounded-full px-3 py-1
+} */
+
+@media screen and (max-width: 1875px) {
+    .results .grid-container {
+        @apply mx-0
+    }
+}
