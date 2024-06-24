@@ -5,12 +5,12 @@ import Results from "../components/Results";
 const SelfAssessment = () => {
   // Defines what fields form has
   const [formData, setFormData] = useState({
-    weight: 0,
-    height: 0,
-    age: 0,
-    gender: 0,
-    currentCondition: "Healthy",
-    activityLevel: 0,
+    weight: 50,
+    height: 151,
+    age: 23,
+    gender: 1,
+    currentCondition: "",
+    activityLevel: 1,
     foodAllergies: "",
   });
   const [res, setRes] = useState({
@@ -18,27 +18,13 @@ const SelfAssessment = () => {
     img_url: []
   })
   const [isToggle, setIsToggle] = useState(false)
-  const [bmr, setBMR] = useState(0)
-  const [calorie, setCalorie] = useState(0)
-  const [actWeights] = useState([1.375, 1.55, 1.725, 1.9])
+  const [bmi, setBMI] = useState(0)
 
   useEffect(() => {
-    if (formData.gender == 1) {
-      setBMR((
-        (10 * formData.weight) +
-        (6.25 * formData.height) -
-        (5 * formData.age)) + 5)
-    } else {
-      setBMR((
-        (10 * formData.weight) +
-        (6.25 * formData.height) -
-        (5 * formData.age)) - 161)
-    }
+    setBMI(
+      formData.weight/((formData.height/100)*(formData.height/100))
+    )
   }, [formData])
-
-  useEffect(() => {
-    setCalorie(bmr * actWeights[formData.activityLevel])
-  }, [formData, bmr, actWeights])
 
   useEffect(() => {
     showResults()
@@ -48,17 +34,12 @@ const SelfAssessment = () => {
     const section = <Results response={{
       output: res.output,
       img_urls: res.img_url,
-      bmr: bmr,
-      calorie: calorie
+      bmi: bmi,
     }} />
 
     if (isToggle) {
       return section
     }
-  }
-
-  function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   // Handle input field changes and apply change to formdata
@@ -71,18 +52,18 @@ const SelfAssessment = () => {
   };
 
   async function sendRequest() {
+    console.log({
+      bmi: bmi.toFixed(1),
+      age: formData.age,
+      pal: Number(formData.activityLevel)-1 
+    });
+
     try {
       const requestBody = {
         nutrition_input: [
-          calorie,
-          getRandomNumber(25, 80),
-          getRandomNumber(0, 13),
-          getRandomNumber(25, 100),
-          getRandomNumber(150, 1000),
-          getRandomNumber(25, 200),
-          getRandomNumber(20, 40),
-          getRandomNumber(10, 30),
-          getRandomNumber(25, 200)
+          bmi.toFixed(1),
+          formData.age,
+          Number(formData.activityLevel)-1
         ],
         params: {
           n_neighbors: 6,
@@ -198,7 +179,13 @@ const SelfAssessment = () => {
               <option value="5">Very hard exercise/sports & physical job or 2x training</option>
             </select>
 
-            <label htmlFor="currentCondition">Current Condition</label>
+            <label htmlFor="currentCondition">Food Allergies</label>
+            <input type="text" id="currentCondition" name="currentCondition"
+              value={formData.currentCondition}
+              onChange={(e) => handleChange(e)}
+            />
+
+            {/* <label htmlFor="currentCondition">Current Condition</label>
             <select id="currentCondition" name="currentCondition"
               value={formData.currentCondition}
               onChange={(e) => handleChange(e)}
@@ -209,7 +196,7 @@ const SelfAssessment = () => {
               <option value="3">Fever</option>
               <option value="4">Pregnant</option>
               <option value="5">Chronic Illness</option>
-            </select>
+            </select> */}
 
             {/* <label htmlFor="allergies">Allergies:</label>
             <select id="allergies" name="foodAllergies"

@@ -10,7 +10,8 @@ app = FastAPI()
 
 # for cors
 origins = [
-   "http://localhost:5173"
+   # "http://localhost:5173/"
+   "*"
 ]
 app.add_middleware(
    CORSMiddleware,
@@ -34,7 +35,7 @@ class parameters(BaseModel):
 Defines the structure for Input for the Model
 '''
 class ModelInput(BaseModel):
-    nutrition_input:conlist(float, min_items=9, max_items=9) # type: ignore
+    nutrition_input:conlist(float, min_items=3, max_items=3) # type: ignore
     params:Optional[parameters]
 
 '''

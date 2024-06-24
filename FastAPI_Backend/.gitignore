@@ -2,3 +2,4 @@ practice.ipynb
 example.py
 .gitignore
 some.ipynb
+__pycache__

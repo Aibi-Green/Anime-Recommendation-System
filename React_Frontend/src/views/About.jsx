@@ -1,16 +1,18 @@
 import React from 'react';
 import Button from '../components/Button';
-import { LoginPages, MainPages } from '../routes/paths';
-import { Fade, Slide } from 'react-awesome-reveal';
-import aboutuser from '../assets/about/aboutuser.png';
-import memberimg from '../assets/about/chizu.jpg';
-import memberimg1 from '../assets/about/chizu.jpg';
-import memberimg2 from '../assets/about/chizu.jpg';
+import { MainPages } from '../routes/paths';
+import { Fade} from 'react-awesome-reveal';
+// import aboutuser from '../assets/about/aboutuser.png';
+// import memberimg from '../assets/about/chizu.jpg';
+// import memberimg1 from '../assets/about/chizu.jpg';
+// import memberimg2 from '../assets/about/chizu.jpg';
 import lariosaImg from '../assets/about/lariosa.jpg';
 import lamanImg from '../assets/about/laman.jpg';
 import bauaImg from '../assets/about/baua.jpg';
 import vicoImg from '../assets/about/vico.jpg';
 import jemImg from '../assets/about/jem.jpg';
+import trishaImg from '../assets/about/trisha.jpg'
+import andreaImg from '../assets/about/andrea.jpg'
 
 import Banner from '../components/Banner';
 
@@ -86,7 +88,7 @@ const About = () => {
               <MemberCard image={jemImg} name="Jem Gonzales" />
             </Fade>
             <Fade direction='up' duration={1075}>
-              <MemberCard image={memberimg2} name="Trisha Mae Hernandez" />
+              <MemberCard image={trishaImg} name="Trisha Mae Hernandez" />
             </Fade>
             <Fade direction='up' duration={1075}>
               <MemberCard image={lamanImg} name="Shaina Marie Laman" />
@@ -95,7 +97,7 @@ const About = () => {
               <MemberCard image={lariosaImg} name="Ivy Lariosa" />
             </Fade>
             <Fade direction='up' duration={1075}>
-              <MemberCard image={memberimg} name="Andrea Aleczis Mejia" />
+              <MemberCard image={andreaImg} name="Andrea Aleczis Mejia" />
             </Fade>
             <Fade direction='up' duration={1075}>
               <MemberCard image={vicoImg} name="Cedric Noah Vico" />

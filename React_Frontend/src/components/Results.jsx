@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 const Results = (props) => {
@@ -99,8 +100,7 @@ const Results = (props) => {
       <div className="results-header">
         <h1>Results</h1>
         <p>
-          Your BMR is <span className="bold">{Math.ceil(props.response.bmr)}</span> and based on your activity
-          level, your caloric needs are <span className="bold">{Math.ceil(props.response.calorie)}</span>.
+          Your BMI is <span className="bold">{props.response.bmi.toFixed(1)}</span>
         </p>
 
         <h2>Recommended Meals</h2>
